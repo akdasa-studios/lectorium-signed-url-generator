@@ -17,7 +17,7 @@ REGION_NAME = os.getenv("REGION_NAME")
 # Create an S3 client
 s3_client = boto3.client(
     "s3",
-    S3_access_key_id=S3_ACCESS_KEY_ID,
+    aws_access_key_id=S3_ACCESS_KEY_ID,
     aws_secret_access_key=S3_SECRET_ACCESS_KEY,
     region_name=REGION_NAME,
     endpoint_url=S3_ENDPOINT_URL,
