@@ -43,6 +43,12 @@ class SignedUrlRequest(BaseModel):
     object_key: str
     expiration: int = 3600  # Default expiration time in seconds (1 hour)
 
+@app.options("/sign-url")
+async def options_sign_url():
+    return {
+        "allow": "POST",
+        "description": "Return a pre-signed URL for the specified object key",
+    }
 
 @app.post("/sign-url")
 async def sign_url(request: SignedUrlRequest):
