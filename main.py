@@ -28,14 +28,10 @@ s3_client = boto3.client(
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://app.lectorium.akdasa.studio",
-        "https://localhost",
-        "http://localhost",
-    ],
-    allow_credentials=True,
-    allow_methods=["OPTIONS", "POST"],
+    allow_origins=["*"],
+    allow_methods=["*"],
     allow_headers=["*"],
+    allow_credentials=True,
 )
 
 
