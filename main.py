@@ -2,6 +2,7 @@ import os
 import boto3
 from botocore.config import Config
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from botocore.exceptions import ClientError
 
@@ -22,6 +23,19 @@ s3_client = boto3.client(
     region_name=REGION_NAME,
     endpoint_url=S3_ENDPOINT_URL,
     config=Config(signature_version="s3v4", s3={"addressing_style": "virtual"}),
+)
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://app.lectorium.akdasa.studio",
+        "https://localhost",
+        "http://localhost",
+    ],
+    allow_credentials=True,
+    allow_methods=["OPTIONS", "POST"],
+    allow_headers=["*"],
 )
 
 
